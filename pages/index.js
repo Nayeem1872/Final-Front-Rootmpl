@@ -15,7 +15,7 @@ import Footer from "@/components/Footer";
 
 
 export default function HomePage({product,newProducts,allProducts}) {
-  console.log(product)
+  // console.log(product)
   return (
     <div>
       <Header />
@@ -31,7 +31,7 @@ export default function HomePage({product,newProducts,allProducts}) {
 }
 
 export async function getServerSideProps() {
-  const featuredProductId = '6463f800a45217478e02f6d3';
+  const featuredProductId = '6498165c4993ae72741f5a16';
   await mongooseConnect();
   const product = await Product.findById(featuredProductId);
   const newProducts = await Product.find({}, null, {sort: {'_id':-1}, limit:4});

@@ -3,8 +3,8 @@ import {primary} from "@/lib/colors";
 
 export const ButtonStyle = css`
   border:0;
-  padding: 8px 15px;
-  border-radius: 5px;
+  padding: 8px 12px;
+  border-radius: 10px;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -12,7 +12,7 @@ export const ButtonStyle = css`
   font-family: 'Poppins', sans-serif;
   font-weight:500;
   svg{
-    height: 16px;
+    height: 25px;
     margin-right: 5px;
   }
   ${props => props.block && css`

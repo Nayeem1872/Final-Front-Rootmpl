@@ -8,7 +8,7 @@ import { RevealWrapper } from "next-reveal";
 const Bg = styled.div`
   background-color: #222;
   color: #fff;
-  padding: 50px 0;
+  padding: 80px 0;
 `;
 const Title = styled.h1`
   margin: 0;
@@ -37,7 +37,7 @@ const ColumnsWrapper = styled.div`
 
   div:nth-child(1) {
     order: 2;
-    margin-left: auto;
+    /* margin-left: auto; */
     margin-right: auto;
   }
 
@@ -69,8 +69,17 @@ const CenterImg = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
   width: 100%;
-  
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  @media screen and (min-width: 768px) {
+    justify-content: flex-start;
+  }
 `;
 
 const ImgColumn = styled(Column)`
@@ -100,6 +109,7 @@ export default function Featured({ product }) {
                       href={"/product/" + product._id}
                       outline={1}
                       white={1}
+                      title="Read more about the product"
                     >
                       Read more
                     </ButtonLink>
@@ -111,6 +121,7 @@ export default function Featured({ product }) {
                       white={1}
                       _id={product._id}
                       src={product.images?.[0]}
+                      title="Add to cart"
                     >
                       <CartIcon />
                       Add to cart

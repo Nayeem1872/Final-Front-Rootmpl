@@ -1,23 +1,22 @@
 import { CartContextProvider } from '@/components/CartContext';
 import { Helmet } from 'react-helmet';
 
-<Helmet>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
-</Helmet>
+const metadata = {
+  title: 'Root Bangladesh',
+  description: 'Root Bangladesh',
+};
 
 export default function App({ Component, pageProps }) {
   return (
     <>
       <Helmet>
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} />
         <link
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
           rel="stylesheet"
-
         />
-         <style>{`
+        <style>{`
           body {
             background-color: #eee;
             padding: 0;
@@ -25,10 +24,12 @@ export default function App({ Component, pageProps }) {
             font-family: 'Poppins', sans-serif;
           }
         `}</style>
-        
+        <img src="/2.jpg" alt="Logo" />
       </Helmet>
      
-      <CartContextProvider><Component {...pageProps} /></CartContextProvider>
+      <CartContextProvider>
+        <Component {...pageProps} />
+      </CartContextProvider>
     </>
   );
 }
