@@ -1,14 +1,16 @@
 import { CartContextProvider } from '@/components/CartContext';
 import { Helmet } from 'react-helmet';
+import { ClerkProvider } from '@clerk/nextjs'
 
 const metadata = {
-  title: 'Root Bangladesh',
-  description: 'Root Bangladesh',
+  title: 'Ecommerce',
+  description: 'Ecommerce',
 };
 
 export default function App({ Component, pageProps }) {
   return (
     <>
+    <ClerkProvider>
       <Helmet>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
@@ -30,6 +32,7 @@ export default function App({ Component, pageProps }) {
       <CartContextProvider>
         <Component {...pageProps} />
       </CartContextProvider>
+      </ClerkProvider>
     </>
   );
 }

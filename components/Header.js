@@ -6,6 +6,11 @@ import { useContext, useState } from "react";
 import { CartContext } from "./CartContext";
 import BarsIcon from "./icons/Bars";
 import SearchIcon from "@/components/icons/SearchIcon";
+import User from "./icons/User";
+import { UserButton,   SignedIn,
+  SignedOut,
+  SignInButton,} from "@clerk/nextjs";
+
 
 const StyleHeader = styled.header`
   background-color: #222;
@@ -78,6 +83,7 @@ const SideIcons = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: -15px;
+  
   a {
     display: inline-block;
     min-width: 20px;
@@ -86,6 +92,9 @@ const SideIcons = styled.div`
       width: 18px;
       height: 18px;
     }
+  }
+  a:first-child {
+    margin-right: 10px; /* You can adjust the value as needed */
   }
 `;
 const LogoImage = styled.img`
@@ -102,25 +111,36 @@ export default function Header() {
   const { cartProducts } = useContext(CartContext);
   const [mobileNavActive, setMobileNavActive] = useState(false);
 
+
+
   return (
     <StyleHeader>
       <Center>
         <Wrapper>
           <Logo href="/">
             <LogoImage src="/2.jpg" alt="Logo" />
-            Root Bangladesh
+            Ecommerce
           </Logo>
 
           <StyledNav mobileNavActive={mobileNavActive}>
             <NavLink href={"/"}>Home</NavLink>
             <NavLink href={"/categories"}>Product List</NavLink>
-            <NavLink href={"/certificate"}>Certificates</NavLink>
+            <NavLink href={"/certificate"}>Orders</NavLink>
             <NavLink href={"/cart"}>Cart({cartProducts.length})</NavLink>
           </StyledNav>
           <SideIcons>
             <Link href={"/search"}>
-              <SearchIcon />
+              <SearchIcon  size={32}/>
             </Link>
+           
+            <SignedOut>
+              <Link href="sign-in">
+                <User />
+              </Link>
+            </SignedOut>
+            <SignedIn>
+              <UserButton afterSignOutUrl="/"/>
+            </SignedIn>
             <NavButton onClick={() => setMobileNavActive((prev) => !prev)}>
               <BarsIcon />
             </NavButton>
